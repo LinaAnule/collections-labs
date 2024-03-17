@@ -10,10 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SetTest {
 
-    private record PersonRecord(String name, int age) {}
+    private record PersonRecord(String name, int age) {
+    }
 
     @Test
-    void testSetUniquinessProperty() {
+    void testSetUniquenessProperty() {
 
         Set<PersonRecord> persons = new HashSet<>();
         persons.add(new PersonRecord("John", 25));
@@ -31,16 +32,18 @@ public class SetTest {
     //Make copies, as input objects are readonly, and even they are not
     //we should not modify them!
     private <T> Set<T> intersection(Set<T> set1, Set<T> set2) {
-        return Sets.intersection(set1, set2);
+        Set<T> result = new HashSet<>(set1);
+        result.retainAll(set2);
+        return result;
     }
 
     @Test
-    void testOwnIntersectionIplementation() {
+    void testOwnIntersectionImplementation() {
 
-        Set<Integer> set1 = Set.of(1,2,3,4,5);
-        Set<Integer> set2 = Set.of(3,4,5,6,7);
+        Set<Integer> set1 = Set.of(1, 2, 3, 4, 5);
+        Set<Integer> set2 = Set.of(3, 4, 5, 6, 7);
 
-        assertEquals(Set.of(3,4,5), intersection(set1, set2));
+        assertEquals(Set.of(3, 4, 5), intersection(set1, set2));
     }
 
 }

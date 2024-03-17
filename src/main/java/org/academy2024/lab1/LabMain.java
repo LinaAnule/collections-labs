@@ -22,7 +22,8 @@ public class LabMain {
 
         //TODO: Sort transactions here
         //transactions.sort(????);
-
+//        transactions.sort((t1, t2) -> t1.amount().compareTo(t2.amount()));
+        transactions.sort((t1, t2) -> t1.date().compareTo(t2.date()));
         transactions.forEach(t -> LinePrinter.print(Color.GREEN, t.toString()));
         LinePrinter.resetColor();
     }
@@ -33,6 +34,6 @@ public class LabMain {
         LabMain lab = new LabMain();
 
         lab.exercise_1_1_simplyPrintTransactions();
-        //lab.exercise_1_2_printTransactionsSorted();
+        lab.exercise_1_2_printTransactionsSorted();
     }
 }
